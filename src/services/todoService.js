@@ -3,7 +3,7 @@ import DataService from "./service";
 const TABLE = 'todolist';
 
 export default class TodoDataService extends DataService {
-	constructor(db, id) {
+	constructor(db, id=null) {
 		super(db, TABLE)
 		this.id = id
 	}
