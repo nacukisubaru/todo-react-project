@@ -10,14 +10,13 @@ import { useDispatch } from "react-redux";
 import { useState } from "react";
 
 export default function CreateTodo() {
-    const database = useSelector((state) => state.managerDB);
     const currentState = useSelector((state) => state);
     const dispatch = useDispatch();
     const [state, setState] = useState({...currentState});
 
     const submitHandler = (event) => {
         event.preventDefault()
-        createTodoFb(database.db, {title:state.textField})
+        createTodoFb(currentState.managerDB.db, {title:state.textField})
     };
 
     async function createTodoFb (db, todo) {
