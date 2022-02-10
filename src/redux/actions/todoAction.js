@@ -1,5 +1,9 @@
-import { FETCH_TODO } from "../reducers/todoReducer"
+import { FETCH_TODO, CREATE_TODO } from "../reducers/todoReducer"
 import TodoDataService from "../../services/todoService";
+
+export function createTodo(todo) {
+    return {type: CREATE_TODO, payload: todo}
+}
 
 export function fetchTodo(db) {
     return async dispatch => {
