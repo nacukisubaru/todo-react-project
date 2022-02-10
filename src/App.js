@@ -1,23 +1,19 @@
 import logo from './logo.svg';
 import './App.css';
+import CreateTodo from './components/Todo/CreateTodo'
+import TodoList from './components/Todo/TodoList';
+
+import { useDispatch } from "react-redux";
+import {managerDB} from "./redux/actions/dbAction"
 
 function App() {
+  const dispatch = useDispatch();
+  dispatch(managerDB())
+  
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <CreateTodo></CreateTodo>
+      <TodoList></TodoList>
     </div>
   );
 }
