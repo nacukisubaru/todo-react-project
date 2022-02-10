@@ -2,14 +2,14 @@ import { initializeApp } from "firebase/app";
 import { getFirestore, collection, getDocs } from "firebase/firestore/lite";
 
 const firebaseConfig = {
-	apiKey: "AIzaSyB5O3S1Bo4SwTjpJJlbYdJt4IS_bKAAVZY",
-	authDomain: "todo-react-redux-c906e.firebaseapp.com",
-	projectId: "todo-react-redux-c906e",
-	storageBucket: "todo-react-redux-c906e.appspot.com",
-	messagingSenderId: "36611620992",
-	appId: "1:36611620992:web:9ddda8901a0e946cf9e665",
-	measurementId: "G-C4LGG468R7"
-  };
+    apiKey: "AIzaSyAEeM0njkifeoK7mpFxXuE2FlnAAis7lQU",
+    authDomain: "todo-react-redux-app-bfd89.firebaseapp.com",
+    projectId: "todo-react-redux-app-bfd89",
+    storageBucket: "todo-react-redux-app-bfd89.appspot.com",
+    messagingSenderId: "660349416946",
+    appId: "1:660349416946:web:cca90ee2652871c424a76b",
+    measurementId: "G-3MW714JTLQ",
+};
 
 export function connectDB() {
     return getFirestore(initializeApp(firebaseConfig));

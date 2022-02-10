@@ -19,7 +19,6 @@ export default class DataService {
 
     getData = async () => {
         const docSnap = await getDoc(doc(this.db, this.table, this.id));
-        console.log(docSnap.data())
         if (docSnap.exists()) {
             return docSnap.data()
         } else {
@@ -29,7 +28,6 @@ export default class DataService {
 
     getList = async () => {
         const result = await getDocs(collection(this.db, this.table));
-        console.log( result.docs)
         return result.docs.map((doc) => ({...doc.data(), id:doc.id}))
     }
 

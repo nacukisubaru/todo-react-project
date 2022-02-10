@@ -6,7 +6,6 @@ export function fetchTodo(db) {
         const todo = new TodoDataService(db)
         const result = await todo.getList()
         dispatch({type: FETCH_TODO, payload: result})
-        console.log(result)
         return
     }
 

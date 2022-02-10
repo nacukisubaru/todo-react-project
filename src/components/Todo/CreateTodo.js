@@ -32,7 +32,6 @@ export default function CreateTodo() {
             ...currentState,
             ...{ [event.target.name]: event.target.value },
         });
-        console.log(state)
     }
 
     return (
