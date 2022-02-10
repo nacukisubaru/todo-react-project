@@ -4,5 +4,5 @@ import { todoReducer } from "./todoReducer";
 
 export const rootReducer = combineReducers({
     managerDB: dbReducer,
-    todos: todoReducer
+    todolist: todoReducer
 })

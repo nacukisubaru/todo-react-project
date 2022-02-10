@@ -6,11 +6,11 @@ import EditIcon from "@mui/icons-material/Edit";
 import {useSelector} from "react-redux";
 
 export default function TodoList() {
-   let todos = useSelector((state) => state.todos)
+   let todolist = useSelector((state) => state.todolist)
 
     return (
         <div className="wrapper">
-            {Array.isArray( todos.todos) ? (
+            {Array.isArray( todolist.todos) ? (
                 <div style={{ height: 400, width: "43%" }}>
                     <Table striped bordered hover>
                         <thead>
@@ -21,7 +21,7 @@ export default function TodoList() {
                             </tr>
                         </thead>
                         <tbody>
-                            { todos.todos.map((todo, index) => {
+                            { todolist.todos.map((todo, index) => {
                                 return (
                                     <tr key={todo.id}>
                                         <td>{index + 1}</td>
