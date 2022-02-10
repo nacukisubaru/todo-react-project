@@ -12,5 +12,4 @@ export function fetchTodo(db) {
         dispatch({type: FETCH_TODO, payload: result})
         return
     }
-
 }

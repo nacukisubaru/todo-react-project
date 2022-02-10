@@ -24,6 +24,7 @@ export default function CreateTodo() {
         const todoService = new TodoDataService(db)
         const result = await todoService.add(todo)
         if(result.id) {
+            todo.id = result.id
             dispatch(createTodo(todo))
         }
     }
