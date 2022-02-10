@@ -10,15 +10,14 @@ import {
 
 export default class DataService {
     constructor(db, table) {
-        this.data = {};
-        this.arrayList = [];
-        this.table = table;
-        this.db = db;
-        this.collection = collection(this.db, this.table);
+        this.data = {}
+        this.table = table
+        this.db = db
+        this.collection = collection(this.db, this.table)
     }
 
     getData = async () => {
-        const docSnap = await getDoc(doc(this.db, this.table, this.id));
+        const docSnap = await getDoc(doc(this.db, this.table, this.id))
         if (docSnap.exists()) {
             return docSnap.data()
         } else {
@@ -27,27 +26,28 @@ export default class DataService {
     }
 
     getList = async () => {
-        const result = await getDocs(collection(this.db, this.table));
+        const result = await getDocs(collection(this.db, this.table))
         return result.docs.map((doc) => ({...doc.data(), id:doc.id}))
     }
 
     getDoc = async () => {
-        return await doc(this.db, this.table, this.id);
+        return await doc(this.db, this.table, this.id)
     };
 
     add = async (newData) => {
         if (this.collection && newData) 
-            return await addDoc(this.collection, newData);
-        else return false;
+            return await addDoc(this.collection, newData)
+        else return false
     };
 
-    update = async (id, updateData) => {
-        const elementDoc = this.getDoc(id);
-        return await updateDoc(elementDoc, updateData);
+    update = async (updateData) => {
+        const elementDoc = this.getDoc()
+        return await updateDoc(elementDoc, updateData)
     };
 
-    delete = async (id) => {
-        const elementDoc = this.getDoc(id);
-        return await deleteDoc(elementDoc);
+    delete = async () => {
+        const elementDoc = await this.getDoc()
+        await deleteDoc(elementDoc)
+        return elementDoc
     };
 }

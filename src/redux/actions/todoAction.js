@@ -1,4 +1,4 @@
-import { FETCH_TODO, CREATE_TODO } from "../reducers/todoReducer"
+import { FETCH_TODO, CREATE_TODO, DELETE_TODO } from "../reducers/todoReducer"
 import TodoDataService from "../../services/todoService";
 
 export function createTodo(todo) {
@@ -12,4 +12,8 @@ export function fetchTodo(db) {
         dispatch({type: FETCH_TODO, payload: result})
         return
     }
+}
+
+export function deleteTodo(todoId) {
+    return {type: DELETE_TODO, todoDelete: todoId}
 }
