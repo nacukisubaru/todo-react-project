@@ -3,9 +3,9 @@ import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
+import EditTodo from "./EditTodo";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleModal } from "../../redux/actions/appAction";
-import EditTodo from "./EditTodo"
 
 const style = {
     position: "absolute",
@@ -21,35 +21,31 @@ const style = {
 
 export default function TodoModal() {
     const modalState = useSelector((state) => state.app.isOpenModal);
-    const dispatch = useDispatch()
-    const handleClose = () => {
-        dispatch(toggleModal(false))
-    }
+    const todo = useSelector((state) => state.todolist.todo);
+    const dispatch = useDispatch();
+
     return (
         <div>
-            
-          
             <Modal
                 open={modalState}
-                onClose={handleClose}
                 aria-labelledby="modal-modal-title"
                 aria-describedby="modal-modal-description"
             >
-            
-            
                 <Box sx={style}>
                     <Typography
                         id="modal-modal-title"
                         variant="h6"
-                        component="h2"
+                        component={"div"}
                     >
-                        Text in a modal
+                        Изменить дело
                     </Typography>
-                    <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                        Duis mollis, est non commodo luctus, nisi erat porttitor
-                        ligula.
+                    <Typography
+                        component={"div"}
+                        id="modal-modal-description"
+                        sx={{ mt: 2 }}
+                    >
+                        <EditTodo todo={todo} key={todo.id} />
                     </Typography>
-                    <Button onClick={handleClose} variant="text">Выйти</Button>
                 </Box>
             </Modal>
         </div>

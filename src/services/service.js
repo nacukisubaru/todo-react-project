@@ -5,7 +5,8 @@ import {
     doc,
     updateDoc,
     deleteDoc,
-    getDoc
+    getDoc,
+    setDoc
 } from "firebase/firestore/lite";
 
 export default class DataService {
@@ -17,12 +18,13 @@ export default class DataService {
     }
 
     getData = async () => {
-        const docSnap = await getDoc(doc(this.db, this.table, this.id))
-        if (docSnap.exists()) {
+        return await getDoc(doc(this.db, this.table, this.id))
+    
+       /* if (docSnap.exists()) {
             return docSnap.data()
         } else {
             return false
-        }
+        }*/
     }
 
     getList = async () => {
@@ -41,8 +43,8 @@ export default class DataService {
     };
 
     update = async (updateData) => {
-        const elementDoc = this.getDoc()
-        return await updateDoc(elementDoc, updateData)
+        const elementDoc = await this.getDoc()
+        return await setDoc(elementDoc, updateData)
     };
 
     delete = async () => {

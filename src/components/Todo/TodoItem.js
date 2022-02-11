@@ -3,7 +3,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import IconButton from "@mui/material/IconButton";
 import EditIcon from "@mui/icons-material/Edit";
 import TodoDataService from "../../services/todoService";
-import { deleteTodo, setTodoId } from "../../redux/actions/todoAction";
+import { deleteTodo, setTodo } from "../../redux/actions/todoAction";
 import { useDispatch,useSelector } from "react-redux";
 import { toggleModal } from "../../redux/actions/appAction";
 
@@ -19,7 +19,7 @@ export default ({todo}) => {
     }
 
     const prepareEditTodo = () => {
-        dispatch(setTodoId(todo.id))
+        dispatch(setTodo(database.db, todo.id))
         dispatch(toggleModal(!currentState.app.isOpenModal))
     }
 

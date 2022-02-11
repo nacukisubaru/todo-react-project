@@ -8,7 +8,6 @@ export default function TodoList() {
 
     return (
         <div className="wrapper">
-            
             {Array.isArray( todolist.todos) ? (
                 <div style={{ height: 400, width: "43%" }}>
                     <Table striped bordered hover>
@@ -21,8 +20,8 @@ export default function TodoList() {
                         </thead>
                         <tbody>
                             { todolist.todos.map((todo, index) => {
-                                todo.index = index + 1
-                                return <TodoItem todo={todo} key={todo.id}></TodoItem>
+                                const todoData = {...todo, index: index + 1}
+                                return <TodoItem todo={todoData} key={todo.id}></TodoItem>
                             })}
                         </tbody>
                     </Table>

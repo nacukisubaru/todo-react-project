@@ -12,8 +12,8 @@ export default class TodoDataService extends DataService {
 		return await this.getData()
 	}
 
-	updateTodo = async () => {
-		return await this.update()
+	updateTodo = async (updateData) => {
+		return await this.update(updateData)
 	}
 
 	deleteTodo = async () => {

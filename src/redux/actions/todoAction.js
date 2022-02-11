@@ -1,4 +1,4 @@
-import { FETCH_TODO, CREATE_TODO, DELETE_TODO, SET_TODO_ID } from "../reducers/todoReducer"
+import { FETCH_TODO, CREATE_TODO, DELETE_TODO, SET_TODO, UPDATE_TODO } from "../reducers/todoReducer"
 import TodoDataService from "../../services/todoService";
 
 export function createTodo(todo) {
@@ -18,6 +18,17 @@ export function deleteTodo(todoId) {
     return {type: DELETE_TODO, todoDelete: todoId}
 }
 
-export function setTodoId(todoId) {
-    return {type: SET_TODO_ID, payload: todoId}
+export function setTodo(db, todoId) {
+    return async dispatch => {
+        const todoService = new TodoDataService(db, todoId)
+        const docSnap = await todoService.getTodo()
+        if(docSnap.exists()) {
+            const data = docSnap.data();
+            dispatch({type: SET_TODO, payload: {...data, id:todoId}})
+        }
+    }
+}
+
+export function updateTodo(todo) {
+    return {type: UPDATE_TODO, payload: todo}
 }

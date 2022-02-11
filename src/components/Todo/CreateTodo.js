@@ -16,7 +16,15 @@ export default function CreateTodo() {
 
     const submitHandler = (event) => {
         event.preventDefault()
-        createTodoFb(currentState.managerDB.db, {title:state.textField})
+        const todo = {
+            title: state.textField,
+            description: '',
+            datetime: new Date(),
+            authorID: 4221,
+            isComplete: false,
+            status: 'not complete' 
+        }
+        createTodoFb(currentState.managerDB.db, todo)
     };
 
     async function createTodoFb (db, todo) {
@@ -32,7 +40,7 @@ export default function CreateTodo() {
         setState({
             ...currentState,
             ...{ [event.target.name]: event.target.value },
-        });
+        })
     }
 
     return (
@@ -63,5 +71,5 @@ export default function CreateTodo() {
                 </form>
             </Box>
         </div>
-    );
+    )
 }
