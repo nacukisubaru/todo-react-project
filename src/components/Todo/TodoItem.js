@@ -3,7 +3,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import IconButton from "@mui/material/IconButton";
 import EditIcon from "@mui/icons-material/Edit";
 import TodoDataService from "../../services/todoService";
-import { deleteTodo } from "../../redux/actions/todoAction";
+import { deleteTodo, setTodoId } from "../../redux/actions/todoAction";
 import { useDispatch,useSelector } from "react-redux";
 import { toggleModal } from "../../redux/actions/appAction";
 
@@ -11,11 +11,16 @@ export default ({todo}) => {
     const currentState = useSelector((state) => state);
     const database = useSelector((state) => state.managerDB);
     const dispatch = useDispatch()
+    const todoService = new TodoDataService(database.db, todo.id)
 
-    async function deleteTodoItem(db, todoId) {
-        const todoService = new TodoDataService(db, todoId)
+    const deleteTodoItem = async () => {
         await todoService.delete()
-        dispatch(deleteTodo(todoId))
+        dispatch(deleteTodo(todo.id))
+    }
+
+    const prepareEditTodo = () => {
+        dispatch(setTodoId(todo.id))
+        dispatch(toggleModal(!currentState.app.isOpenModal))
     }
 
     return (
@@ -23,10 +28,10 @@ export default ({todo}) => {
             <td>{todo.index}</td>
             <td>{todo.title}</td>
             <td>
-                <IconButton aria-label="delete" onClick={()=>{dispatch(toggleModal(!currentState.app.isOpenModal))}} type="submit" size="small">
+                <IconButton aria-label="delete" onClick={prepareEditTodo} type="submit" size="small">
                     <EditIcon fontSize="inherit" />
                 </IconButton>
-                <IconButton aria-label="delete" onClick={()=>{deleteTodoItem(database.db, todo.id, dispatch)}} type="submit" size="small">
+                <IconButton aria-label="delete" onClick={deleteTodoItem} type="submit" size="small">
                     <DeleteIcon fontSize="inherit" />
                 </IconButton>
             </td>

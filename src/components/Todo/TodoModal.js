@@ -5,6 +5,7 @@ import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleModal } from "../../redux/actions/appAction";
+import EditTodo from "./EditTodo"
 
 const style = {
     position: "absolute",
@@ -26,12 +27,16 @@ export default function TodoModal() {
     }
     return (
         <div>
+            
+          
             <Modal
                 open={modalState}
                 onClose={handleClose}
                 aria-labelledby="modal-modal-title"
                 aria-describedby="modal-modal-description"
             >
+            
+            
                 <Box sx={style}>
                     <Typography
                         id="modal-modal-title"
