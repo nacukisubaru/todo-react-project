@@ -5,6 +5,7 @@ import TodoList from './components/Todo/TodoList';
 import {managerDB} from "./redux/actions/dbAction"
 import {fetchTodo} from "./redux/actions/todoAction"
 import { useDispatch, useSelector } from "react-redux";
+import TodoModal from './components/Todo/TodoModal';
 
 function App() {
   const dispatch = useDispatch();
@@ -14,6 +15,7 @@ function App() {
   
   return (
     <div className="App">
+      <TodoModal></TodoModal>
       <CreateTodo></CreateTodo>
       <TodoList></TodoList>
     </div>
